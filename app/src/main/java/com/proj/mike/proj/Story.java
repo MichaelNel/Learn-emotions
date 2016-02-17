@@ -2,6 +2,7 @@ package com.proj.mike.proj;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,13 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 public class Story extends AppCompatActivity {
 
@@ -36,7 +44,6 @@ public class Story extends AppCompatActivity {
 
     public void next(View view){
         final FrameLayout ll = (FrameLayout) findViewById(R.id.layout);
-        Button b = (Button) findViewById(R.id.n_button);
         RelativeLayout r = (RelativeLayout) findViewById(R.id.yn_layout);
         RelativeLayout ny = (RelativeLayout) findViewById(R.id.ny_layout);
         RelativeLayout h_s_a = (RelativeLayout) findViewById(R.id.h_s_a);
@@ -45,7 +52,12 @@ public class Story extends AppCompatActivity {
         RelativeLayout why_worried = (RelativeLayout) findViewById(R.id.why_worried);
         EditText usr_1 = (EditText) findViewById(R.id.usr_in_1);
 
-        //sounds
+        // Buttons
+        Button b = (Button) findViewById(R.id.n_button);
+        Button b_2 = (Button) findViewById(R.id.n_2);
+
+
+        // Sounds
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.star_sm);
         final MediaPlayer mp_bg = MediaPlayer.create(this, R.raw.star_bg);
 
@@ -226,13 +238,45 @@ public class Story extends AppCompatActivity {
 
             case 32: ll.setBackgroundResource(R.drawable.d1f23);
                 usr_1.setVisibility(View.VISIBLE);
+                b_2.setVisibility(View.VISIBLE);
                 spin_and_move(star_sm_5, 720.0f);
                 mp.start();
                 why_worried.setVisibility(View.GONE);
                 b.setVisibility(View.VISIBLE);
                 break;
 
-            case 33: thumb.setImageResource(R.drawable.d1f24);
+            case 33:
+                // Save editText contents to file
+
+                // Get editText contents
+                String what_to_do = "What can I do to try make Sam feel better? : " + usr_1.getText().toString();
+
+                String extPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+
+                //Set up file
+                File file = new File(getExternalFilesDir(extPath).getAbsolutePath(), "out.txt");
+
+                /*if (!dir.exists()){
+                    dir.mkdir();
+                    System.out.println("Directory created");
+                }*/
+                //File file = new File(dir, pathPrefix + "out.txt");
+                try {
+
+                    if(!file.exists()){
+                        file.createNewFile();
+                    }
+                    BufferedOutputStream f_out = new BufferedOutputStream(new FileOutputStream(file));
+                    f_out.write(what_to_do.getBytes());
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+                thumb.setImageResource(R.drawable.d1f24);
+                b_2.setVisibility(View.GONE);
                 spin_and_move(star_sm_6, 770.0f);
                 mp.start();
                 thumb.startAnimation(scale_up);

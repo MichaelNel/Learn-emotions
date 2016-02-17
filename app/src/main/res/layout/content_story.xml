@@ -354,5 +354,16 @@
         android:src="@drawable/star_bg"
         android:layout_marginBottom="-150dp" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NEXT"
+        android:id="@+id/n_2"
+        android:onClick="next"
+        android:layout_gravity="center_horizontal"
+        android:textSize="50sp"
+        android:layout_marginTop="180dp"
+        android:visibility="gone" />
+
 </FrameLayout>
 
