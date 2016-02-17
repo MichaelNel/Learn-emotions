@@ -27,15 +27,16 @@
             android:layout_gravity="center_horizontal">
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/start_button"
+                android:layout_width="208dp"
+                android:layout_height="142dp"
                 android:id="@+id/button3"
                 android:textSize="50sp"
                 android:layout_gravity="center_horizontal"
+                android:onClick="start_story"
+                android:background="@drawable/start_button"
+                android:shadowColor="#000000"
                 android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:onClick="start_story" />
+                android:layout_centerHorizontal="true" />
         </RelativeLayout>
     </LinearLayout>
 </FrameLayout>
