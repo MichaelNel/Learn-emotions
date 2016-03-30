@@ -9,6 +9,7 @@ import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
@@ -69,6 +70,8 @@ public class Story extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_story);
 
         Button prev = (Button) findViewById(R.id.p_button);
@@ -266,7 +269,7 @@ public class Story extends AppCompatActivity {
                 f_out.write(output.getBytes());
                 incorrect_count = 0;
 
-                output = Integer.toString((int) (timer_stop - timer_start)/1000) + "\n";
+                output = Double.toString((double) (timer_stop - timer_start)/1000) + "\n";
                 f_out.write(output.getBytes());
 
                 spin_and_move(star_sm_1, 500.0f);
@@ -338,7 +341,7 @@ public class Story extends AppCompatActivity {
                 output = "How does Sam feel (1):" + Integer.toString(incorrect_count) + " ";
                 f_out.write(output.getBytes());
 
-                output = Integer.toString((int) (timer_stop - timer_start)/1000) + "\n";
+                output = Double.toString((double) (timer_stop - timer_start)/1000) + "\n";
                 f_out.write(output.getBytes());
 
                 incorrect_count = 0;
@@ -359,7 +362,7 @@ public class Story extends AppCompatActivity {
                 f_out.write(output.getBytes());
                 incorrect_count = 0;
 
-                output = Integer.toString((int) (timer_stop - timer_start)/1000) + "\n";
+                output = Double.toString((double) (timer_stop - timer_start)/1000) + "\n";
                 f_out.write(output.getBytes());
 
                 why_happy.setVisibility(View.GONE);
@@ -383,7 +386,7 @@ public class Story extends AppCompatActivity {
                 f_out.write(output.getBytes());
                 incorrect_count = 0;
 
-                output = Integer.toString((int) (timer_stop - timer_start)/1000) + "\n";
+                output = Double.toString((double) (timer_stop - timer_start)/1000) + "\n";
                 f_out.write(output.getBytes());
 
                 break;
@@ -427,7 +430,7 @@ public class Story extends AppCompatActivity {
                 f_out.write(output.getBytes());
                 incorrect_count = 0;
 
-                output = Integer.toString((int) (timer_stop - timer_start)/1000) + "\n";
+                output = Double.toString((double) (timer_stop - timer_start)/1000) + "\n";
                 f_out.write(output.getBytes());
 
                 timer_start = SystemClock.elapsedRealtime();
@@ -447,7 +450,7 @@ public class Story extends AppCompatActivity {
                 f_out.write(output.getBytes());
                 incorrect_count = 0;
 
-                output = Integer.toString((int) (timer_stop - timer_start)/1000) + "\n";
+                output = Double.toString((double) (timer_stop - timer_start)/1000) + "\n";
                 f_out.write(output.getBytes());
 
                 ny.setVisibility(View.GONE);
@@ -505,7 +508,7 @@ public class Story extends AppCompatActivity {
                 f_out.write(log.getBytes());
                 incorrect_count = 0;
 
-                output = Integer.toString((int) (timer_stop - timer_start)/1000) + "\n";
+                output = Double.toString((double) (timer_stop - timer_start)/1000) + "\n";
                 f_out.write(output.getBytes());
 
                 thumb.setImageResource(R.drawable.d1f24);
